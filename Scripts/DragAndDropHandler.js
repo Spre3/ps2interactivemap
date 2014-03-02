@@ -9,27 +9,30 @@
    
     $("#mapContainer").droppable({
         tolerance:"pointer",
-        drop: function (event, ui) {            
-            var $canvas = $(this);
-            if (!ui.draggable.hasClass('canvas-element')) {
-                var $canvasElement = $(ui.draggable).find('span').clone();
-                $canvasElement.addClass('canvas-element');
-                $canvasElement.draggable({
-                    containment: '#mapContainer'
-                });
-                $canvas.append($canvasElement);
-                $canvasElement.css({
-                    left: (ui.offset.left - $canvas.offset().left),
-                    top: ui.offset.top - $canvas.offset().top,
-                    position: 'absolute',
-                    marginRight: 0
-                });
-            }
-        }
+        drop: dropped
     });
 
 
 });
+
+function dropped(event, ui){            
+    var $canvas = $(this);
+    if (!ui.draggable.hasClass('canvas-element')) {
+        var $canvasElement = $(ui.draggable).find('span').clone();
+        $canvasElement.addClass('canvas-element');
+        $canvasElement.draggable({
+            containment: '#mapContainer'
+        });
+        $canvas.append($canvasElement);
+        $canvasElement.css({
+            left: (ui.offset.left - $canvas.offset().left),
+            top: ui.offset.top - $canvas.offset().top,
+            position: 'absolute',
+            marginRight: 0
+        });
+    }
+}
+
 function revert(dropped){
     if (!dropped)
         return true;
