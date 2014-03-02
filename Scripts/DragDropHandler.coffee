@@ -1,16 +1,5 @@
 jQuery ($) ->
-    $('.drag-item').draggable
-        helper: getHelper
-        cursor: 'move'
-        revert: revert
-        cursorAt:
-            top:10
-            left:10
-            
-    $("#mapContainer").droppable
-         tolerance:'pointer'
-         drop: dropped
-    
+    initDragAndDropEvents()
     true
     
 revert = (dropped) ->
@@ -33,5 +22,18 @@ dropped = (event, ui) ->
                 top: ui.offset.top - $canvas.offset().top
                 position: 'absolute'
                 marginRight: 0
-        
+    true
+    
+initDragAndDropEvents = ->
+    $('.drag-item').draggable
+        helper: getHelper
+        cursor: 'move'
+        revert: revert
+        cursorAt:
+            top:10
+            left:10
+            
+    $("#mapContainer").droppable
+         tolerance:'pointer'
+         drop: dropped    
     true
