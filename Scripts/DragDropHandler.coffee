@@ -1,7 +1,7 @@
 jQuery ($) ->
     initDragAndDropEvents()
     true
-    
+
 revert = (dropped) ->
     true if !dropped
     false
@@ -16,12 +16,11 @@ dropped = (event, ui) ->
         $canvas.append($canvasElement)
         $canvasElement
             .addClass('canvas-element')       
-            .draggable(containment: '#mapContainer')
+            .draggable
+                containment: '#mapContainer'
             .css
                 left: ui.offset.left - $canvas.offset().left
                 top: ui.offset.top - $canvas.offset().top
-                position: 'absolute'
-                marginRight: 0
     true
     
 initDragAndDropEvents = ->

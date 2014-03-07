@@ -1,20 +1,8 @@
 (function() {
-  var dropped, getHelper, revert;
+  var dropped, getHelper, initDragAndDropEvents, revert;
 
   jQuery(function($) {
-    $('.drag-item').draggable({
-      helper: getHelper,
-      cursor: 'move',
-      revert: revert,
-      cursorAt: {
-        top: 10,
-        left: 10
-      }
-    });
-    $("#mapContainer").droppable({
-      tolerance: 'pointer',
-      drop: dropped
-    });
+    initDragAndDropEvents();
     return true;
   });
 
@@ -40,11 +28,26 @@
         containment: '#mapContainer'
       }).css({
         left: ui.offset.left - $canvas.offset().left,
-        top: ui.offset.top - $canvas.offset().top,
-        position: 'absolute',
-        marginRight: 0
+        top: ui.offset.top - $canvas.offset().top
       });
     }
+    return true;
+  };
+
+  initDragAndDropEvents = function() {
+    $('.drag-item').draggable({
+      helper: getHelper,
+      cursor: 'move',
+      revert: revert,
+      cursorAt: {
+        top: 10,
+        left: 10
+      }
+    });
+    $("#mapContainer").droppable({
+      tolerance: 'pointer',
+      drop: dropped
+    });
     return true;
   };
 
